@@ -1,7 +1,8 @@
 {
   "name": "pulsar",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ]
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "dev": "bun run --filter '@pulsar/ide' watch"
+  }
 }
