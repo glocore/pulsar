@@ -4,5 +4,9 @@
   "workspaces": ["packages/*"],
   "scripts": {
     "dev": "bun run --filter '@pulsar/ide' watch"
+  },
+  "devDependencies": {
+    "prettier": "3.3.2",
+    "prettier-plugin-organize-imports": "3.2.4"
   }
 }
