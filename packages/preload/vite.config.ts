@@ -1,7 +1,7 @@
 import { join } from "node:path";
 import { preload } from "unplugin-auto-expose";
 import { defineConfig } from "vite";
-import { chrome } from "../ide/.electron-vendors.cache.json";
+import { chrome } from "../main/.electron-vendors.cache.json";
 
 const WORKSPACE_ROOT = __dirname;
 const REPO_ROOT = join(WORKSPACE_ROOT, "../..");

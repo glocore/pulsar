@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 import { join } from "node:path";
 import { renderer } from "unplugin-auto-expose";
 import { defineConfig } from "vite";
-import { chrome } from "../ide/.electron-vendors.cache.json";
+import { chrome } from "../main/.electron-vendors.cache.json";
 
 const WORKSPACE_ROOT = __dirname;
 const REPO_ROOT = join(WORKSPACE_ROOT, "../..");

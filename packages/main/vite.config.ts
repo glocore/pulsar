@@ -1,8 +1,8 @@
-import { node } from '../ide/.electron-vendors.cache.json';
-import { join } from 'node:path';
+import { join } from "node:path";
+import { node } from "./.electron-vendors.cache.json";
 
 const PACKAGE_ROOT = __dirname;
-const PROJECT_ROOT = join(PACKAGE_ROOT, '../..');
+const PROJECT_ROOT = join(PACKAGE_ROOT, "../..");
 
 /**
  * @type {import('vite').UserConfig}
@@ -14,23 +14,23 @@ const config = {
   envDir: PROJECT_ROOT,
   resolve: {
     alias: {
-      '/@/': join(PACKAGE_ROOT, 'src') + '/',
+      "/@/": join(PACKAGE_ROOT, "src") + "/",
     },
   },
   build: {
     ssr: true,
-    sourcemap: 'inline',
+    sourcemap: "inline",
     target: `node${node}`,
-    outDir: 'dist',
-    assetsDir: '.',
-    minify: process.env.MODE !== 'development',
+    outDir: "dist",
+    assetsDir: ".",
+    minify: process.env.MODE !== "development",
     lib: {
-      entry: 'src/index.ts',
-      formats: ['es'],
+      entry: "src/index.ts",
+      formats: ["es"],
     },
     rollupOptions: {
       output: {
-        entryFileNames: '[name].js',
+        entryFileNames: "[name].js",
       },
     },
     emptyOutDir: true,

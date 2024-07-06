@@ -5,11 +5,13 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "bun run --filter '@pulsar/ide' watch"
+    "dev": "bun run --filter '@pulsar/main' dev"
   },
   "devDependencies": {
+    "knip": "5.24.1",
     "prettier": "3.3.2",
-    "prettier-plugin-organize-imports": "3.2.4"
+    "prettier-plugin-organize-imports": "3.2.4",
+    "vite": "5.3.3"
   },
   "patchedDependencies": {
     "unplugin-auto-expose@0.3.0": "patches/unplugin-auto-expose@0.3.0.patch"

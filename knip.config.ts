@@ -1,0 +1,19 @@
+import { KnipConfig } from "knip";
+
+export default {
+  workspaces: {
+    "packages/main": {
+      entry: "src/index.ts",
+      project: "**/*.ts",
+    },
+    "packages/renderer": {
+      entry: "src/main.tsx",
+      project: "**/*.{ts,tsx}",
+      ignoreDependencies: ["postcss-load-config"],
+    },
+    "packages/preload": {
+      entry: "src/index.ts",
+      project: "**/*.ts",
+    },
+  },
+} satisfies KnipConfig;
