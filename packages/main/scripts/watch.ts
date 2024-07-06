@@ -67,7 +67,7 @@ function setupPreloadPackageWatcher({ ws }: ViteDevServer) {
   return build({
     mode,
     logLevel,
-    configFile: "../ide/packages/preload/vite.config.js",
+    configFile: "../preload/vite.config.ts",
     build: {
       /**
        * Set to {} to enable rollup watcher

@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { BrowserWindow, app } from "electron";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -10,7 +10,7 @@ async function createWindow() {
       contextIsolation: true,
       sandbox: false, // Sandbox disabled because the demo of preload script depend on the Node.js api
       webviewTag: false, // The webview tag is not recommended. Consider alternatives like an iframe or Electron's BrowserView. @see https://www.electronjs.org/docs/latest/api/webview-tag#warning
-      preload: join(app.getAppPath(), "packages/preload/dist/index.mjs"),
+      preload: join(app.getAppPath(), "../preload/dist/index.mjs"),
     },
   });
 
@@ -26,7 +26,7 @@ async function createWindow() {
     browserWindow?.show();
 
     if (import.meta.env.DEV) {
-      // browserWindow?.webContents.openDevTools();
+      browserWindow?.webContents.openDevTools();
     }
   });
 

@@ -2,8 +2,8 @@
 
 import react from "@vitejs/plugin-react";
 import { join } from "node:path";
+import { renderer } from "unplugin-auto-expose";
 import { defineConfig } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { chrome } from "../ide/.electron-vendors.cache.json";
 
 const WORKSPACE_ROOT = __dirname;
@@ -11,9 +11,20 @@ const REPO_ROOT = join(WORKSPACE_ROOT, "../..");
 
 export default defineConfig({
   mode: process.env.MODE,
-  plugins: [react(), tsconfigPaths()],
+  plugins: [
+    renderer.vite({
+      preloadEntry: join(REPO_ROOT, "packages/preload/src/index.ts"),
+    }),
+    react(),
+  ],
   root: WORKSPACE_ROOT,
   envDir: REPO_ROOT,
+  resolve: {
+    alias: {
+      "@/": join(WORKSPACE_ROOT, "src") + "/",
+    },
+  },
+  base: "",
   server: {
     fs: {
       strict: true,

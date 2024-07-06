@@ -1,0 +1,13 @@
+diff --git a/dist/index.js b/dist/index.js
+index d3bc085c43271ea6488106a678716195339cb79d..bbc527a71aa84040b3366c1302a410fbf3324702 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -31,7 +31,7 @@ import {
+   isVariableDeclaration
+ } from "@babel/types";
+ import traverseModule from "@babel/traverse";
+-var traverse = traverseModule.default;
++var traverse = traverseModule;
+ var preload = createUnplugin(
+   () => {
+     const __entries = /* @__PURE__ */ new Set();
