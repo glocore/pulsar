@@ -5,7 +5,5 @@ dist
 thumbs.db
 
 .eslintcache
-.browserslistrc
-.electron-vendors.cache.json
 
 .idea
