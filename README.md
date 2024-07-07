@@ -8,5 +8,5 @@ bun run dev
 ```
 
 ## TODO
-- configure eslint
 - configure testing
+- configure github workflows
