@@ -7,7 +7,7 @@ export default {
       project: "**/*.ts",
     },
     "packages/renderer": {
-      entry: "src/main.tsx",
+      entry: ["src/main.tsx", "testSetup.ts"],
       project: "**/*.{ts,tsx}",
       ignoreDependencies: ["postcss-load-config"],
     },
