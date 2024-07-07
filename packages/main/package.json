@@ -13,6 +13,7 @@
     "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 electron scripts/update-electron-vendors.js"
   },
   "devDependencies": {
+    "@types/bun": "1.1.6",
     "@types/node": "20.14.9",
     "cross-env": "7.0.3",
     "electron": "31.1.0",

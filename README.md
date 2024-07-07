@@ -8,5 +8,4 @@ bun run dev
 ```
 
 ## TODO
-- configure testing
 - configure github workflows
