@@ -1,8 +1,106 @@
-import {app} from 'electron';
-import './security-restrictions';
-import {restoreOrCreateWindow} from '/@/mainWindow';
-import {platform} from 'node:process';
-import updater from 'electron-updater';
+import { app, Menu, shell } from "electron";
+import updater from "electron-updater";
+import { platform } from "node:process";
+import "./security-restrictions";
+import { restoreOrCreateWindow } from "/@/mainWindow";
+
+const isMac = process.platform === "darwin";
+
+const template = [
+  // { role: 'appMenu' }
+  ...(isMac
+    ? [
+        {
+          label: app.name,
+          submenu: [
+            { role: "about" },
+            { type: "separator" },
+            { role: "services" },
+            { type: "separator" },
+            { role: "hide" },
+            { role: "hideOthers" },
+            { role: "unhide" },
+            { type: "separator" },
+            { role: "quit" },
+          ],
+        },
+      ]
+    : []),
+  // { role: 'fileMenu' }
+  {
+    label: "File",
+    submenu: [isMac ? { role: "close" } : { role: "quit" }],
+  },
+  // { role: 'editMenu' }
+  {
+    label: "Edit",
+    submenu: [
+      { role: "undo" },
+      { role: "redo" },
+      { type: "separator" },
+      { role: "cut" },
+      { role: "copy" },
+      { role: "paste" },
+      ...(isMac
+        ? [
+            { role: "pasteAndMatchStyle" },
+            { role: "delete" },
+            { role: "selectAll" },
+            { type: "separator" },
+            {
+              label: "Speech",
+              submenu: [{ role: "startSpeaking" }, { role: "stopSpeaking" }],
+            },
+          ]
+        : [{ role: "delete" }, { type: "separator" }, { role: "selectAll" }]),
+    ],
+  },
+  // { role: 'viewMenu' }
+  {
+    label: "View",
+    submenu: [
+      { role: "reload" },
+      { role: "forceReload" },
+      { role: "toggleDevTools" },
+      { type: "separator" },
+      { role: "resetZoom" },
+      { role: "zoomIn" },
+      { role: "zoomOut" },
+      { type: "separator" },
+      { role: "togglefullscreen" },
+    ],
+  },
+  // { role: 'windowMenu' }
+  {
+    label: "Window",
+    submenu: [
+      { role: "minimize" },
+      { role: "zoom" },
+      ...(isMac
+        ? [
+            { type: "separator" },
+            { role: "front" },
+            { type: "separator" },
+            { role: "window" },
+          ]
+        : [{ role: "close" }]),
+    ],
+  },
+  {
+    role: "help",
+    submenu: [
+      {
+        label: "Learn More",
+        click: async () => {
+          await shell.openExternal("https://electronjs.org");
+        },
+      },
+    ],
+  },
+];
+
+const menu = Menu.buildFromTemplate(template);
+Menu.setApplicationMenu(menu);
 
 /**
  * Prevent electron from running multiple instances.
@@ -12,18 +110,13 @@ if (!isSingleInstance) {
   app.quit();
   process.exit(0);
 }
-app.on('second-instance', restoreOrCreateWindow);
-
-/**
- * Disable Hardware Acceleration to save more system resources.
- */
-app.disableHardwareAcceleration();
+app.on("second-instance", restoreOrCreateWindow);
 
 /**
  * Shout down background process if all windows was closed
  */
-app.on('window-all-closed', () => {
-  if (platform !== 'darwin') {
+app.on("window-all-closed", () => {
+  if (platform !== "darwin") {
     app.quit();
   }
 });
@@ -31,7 +124,7 @@ app.on('window-all-closed', () => {
 /**
  * @see https://www.electronjs.org/docs/latest/api/app#event-activate-macos Event: 'activate'.
  */
-app.on('activate', restoreOrCreateWindow);
+app.on("activate", restoreOrCreateWindow);
 
 /**
  * Create the application window when the background process is ready.
@@ -39,7 +132,7 @@ app.on('activate', restoreOrCreateWindow);
 app
   .whenReady()
   .then(restoreOrCreateWindow)
-  .catch(e => console.error('Failed create window:', e));
+  .catch((e) => console.error("Failed create window:", e));
 
 /**
  * Install Vue.js or any other extension in development mode only.
@@ -76,5 +169,5 @@ if (import.meta.env.PROD) {
   app
     .whenReady()
     .then(() => updater.autoUpdater.checkForUpdatesAndNotify())
-    .catch(e => console.error('Failed check and install updates:', e));
+    .catch((e) => console.error("Failed check and install updates:", e));
 }

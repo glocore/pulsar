@@ -1,13 +1,13 @@
 {
   "name": "@pulsar/preload",
   "version": "0.0.0",
-  "type": "module",
-  "private": true,
-  "scripts": {},
   "devDependencies": {
     "@types/node": "20.14.9",
     "typescript": "5.5.2",
     "unplugin-auto-expose": "0.3.0",
     "vite": "5.3.3"
-  }
+  },
+  "private": true,
+  "scripts": {},
+  "type": "module"
 }

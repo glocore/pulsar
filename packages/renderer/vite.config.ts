@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { renderer } from "unplugin-auto-expose";
 import { defineConfig } from "vite";
 import { chrome } from "../main/vendors.json";
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 const WORKSPACE_ROOT = __dirname;
 const REPO_ROOT = join(WORKSPACE_ROOT, "../..");
@@ -15,6 +16,7 @@ export default defineConfig({
     renderer.vite({
       preloadEntry: join(REPO_ROOT, "packages/preload/src/index.ts"),
     }),
+    TanStackRouterVite(),
     react(),
   ],
   root: WORKSPACE_ROOT,
