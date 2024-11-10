@@ -14,7 +14,7 @@ export const Route = createLazyFileRoute("/")({
   component: HomePage,
 });
 
-export function HomePage() {
+function HomePage() {
   const { editorFilePath } = Route.useSearch();
 
   return (

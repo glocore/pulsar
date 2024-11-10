@@ -9,6 +9,7 @@ export default {
     "packages/renderer": {
       entry: ["src/main.tsx", "testSetup.ts"],
       project: "**/*.{ts,tsx}",
+      ignore: ["src/routeTree.gen.ts"],
       ignoreDependencies: ["postcss-load-config"],
     },
     "packages/preload": {
