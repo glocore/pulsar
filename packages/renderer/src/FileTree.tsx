@@ -15,12 +15,10 @@ export const FileTree = ({ rootPath }: { rootPath: string }) => {
     navigate({ search: { editorFilePath: filePath } });
   };
 
-  console.log("filetree before");
   const { data: files } = useSuspenseQuery({
-    queryKey: ["filetree", rootPath],
+    queryKey: ["fileTree", rootPath],
     queryFn: () => fileTree(rootPath),
   });
-  console.log("filetree after");
 
   if (!files) {
     return null;
