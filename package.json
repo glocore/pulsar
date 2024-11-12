@@ -1,11 +1,16 @@
 {
   "name": "pulsar",
+  "type": "module",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "dev": "bun run --filter '@pulsar/{main,renderer}' dev"
+  },
+  "main": "scripts/entry.js",
+  "dependencies": {
+    "@pulsar/main": "*"
   },
   "devDependencies": {
     "@types/bun": "1.1.13",

@@ -1,4 +1,4 @@
-import { fileTree, Node } from "#preload";
+import { fileTree, Node } from "@pulsar/preload";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import {
@@ -15,12 +15,10 @@ export const FileTree = ({ rootPath }: { rootPath: string }) => {
     navigate({ search: { editorFilePath: filePath } });
   };
 
-  console.log("filetree before");
   const { data: files } = useSuspenseQuery({
-    queryKey: ["filetree", rootPath],
+    queryKey: ["fileTree", rootPath],
     queryFn: () => fileTree(rootPath),
   });
-  console.log("filetree after");
 
   if (!files) {
     return null;
