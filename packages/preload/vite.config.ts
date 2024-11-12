@@ -1,7 +1,8 @@
 import { join } from "node:path";
 import { preload } from "unplugin-auto-expose";
 import { defineConfig } from "vite";
-import { chrome } from "../main/vendors.json";
+import type { Plugin } from "vite";
+import { getChromeMajorVersion } from "../main/electron-versions";
 
 const WORKSPACE_ROOT = __dirname;
 const REPO_ROOT = join(WORKSPACE_ROOT, "../..");
@@ -13,7 +14,7 @@ const config = defineConfig({
   build: {
     ssr: true,
     sourcemap: "inline",
-    target: `chrome${chrome}`,
+    target: `chrome${getChromeMajorVersion()}`,
     outDir: "dist",
     assetsDir: ".",
     minify: process.env.MODE !== "development",
@@ -32,7 +33,7 @@ const config = defineConfig({
     reportCompressedSize: false,
   },
 
-  plugins: [preload.vite()],
+  plugins: [preload.vite() as Plugin],
 });
 
 export default config;

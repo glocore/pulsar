@@ -1,1 +1,9 @@
-{}
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node"
+  },
+  "include": ["scripts/**/*.ts"]
+}
