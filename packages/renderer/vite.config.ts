@@ -6,7 +6,7 @@ import { renderer } from "unplugin-auto-expose";
 import { defineConfig } from "vite";
 import type { Plugin } from "vite";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
-import { getChromeMajorVersion } from "../main/electron-versions";
+import { getChromeMajorVersion } from "../main/electron-versions.js";
 
 const WORKSPACE_ROOT = __dirname;
 const REPO_ROOT = join(WORKSPACE_ROOT, "../..");

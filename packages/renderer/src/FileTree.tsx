@@ -1,4 +1,4 @@
-import { fileTree, Node } from "#preload";
+import { fileTree, Node } from "@pulsar/preload";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import {

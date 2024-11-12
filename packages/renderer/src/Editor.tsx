@@ -1,4 +1,4 @@
-import { getFileAsString } from "#preload";
+import { getFileAsString } from "@pulsar/preload";
 import { tsxLanguage } from "@codemirror/lang-javascript";
 import { useQuery } from "@tanstack/react-query";
 import { basicSetup, EditorView } from "codemirror";

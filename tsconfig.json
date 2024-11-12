@@ -3,7 +3,10 @@
     "module": "esnext",
     "target": "esnext",
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
+    "moduleResolution": "nodenext",
+    "strict": true,
+    "isolatedModules": true,
+    "types": ["node"]
   },
   "include": ["scripts/**/*.ts"]
 }

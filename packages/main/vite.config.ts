@@ -51,7 +51,7 @@ function handleHotReload(): Plugin {
       const rendererWatchServerProvider = config.plugins.find((p) => {
         if (p && "name" in p) {
           return (
-            p.name === "@vite-electron-builder/renderer-watch-server-provider"
+            p.name === "@pulsar/renderer-watch-server-provider"
           );
         }
 

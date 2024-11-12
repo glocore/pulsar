@@ -13,7 +13,7 @@ const rendererWatchServer = await createServer({
 await rendererWatchServer.listen();
 
 const rendererWatchServerProvider: Plugin = {
-  name: "@vite-electron-builder/renderer-watch-server-provider",
+  name: "@pulsar/renderer-watch-server-provider",
   api: {
     provideRendererWatchServer() {
       return rendererWatchServer;
