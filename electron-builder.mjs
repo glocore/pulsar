@@ -20,7 +20,7 @@ export default /** @type import('electron-builder').Configuration */
   artifactName: '${productName}-${version}-${os}-${arch}.${ext}',
   files: [
     'packages/entry-point.js',
-    '!node_modules/@vite-electron-builder/**',
+    '!node_modules/@pulsar/**',
     ...await getListOfFilesFromEachWorkspace(),
   ],
 });

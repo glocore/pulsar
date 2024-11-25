@@ -1,5 +1,5 @@
 {
-  "name": "@vite-electron-builder/renderer",
+  "name": "@pulsar/renderer",
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -1,36 +1,39 @@
-import {initApp} from '@vite-electron-builder/main';
-import {fileURLToPath} from 'node:url';
+import { initApp } from "@pulsar/main";
+import { fileURLToPath } from "node:url";
 
-if (process.env.NODE_ENV === 'development' || process.env.PLAYWRIGHT_TEST === 'true' || !!process.env.CI) {
+if (
+  process.env.NODE_ENV === "development" ||
+  process.env.PLAYWRIGHT_TEST === "true" ||
+  !!process.env.CI
+) {
   function showAndExit(...args) {
     console.error(...args);
     process.exit(1);
   }
 
-  process.on('uncaughtException', showAndExit);
-  process.on('unhandledRejection', showAndExit);
+  process.on("uncaughtException", showAndExit);
+  process.on("unhandledRejection", showAndExit);
 }
 
 // noinspection JSIgnoredPromiseFromCall
 /**
- * We resolve '@vite-electron-builder/renderer' and '@vite-electron-builder/preload'
- * here and not in '@vite-electron-builder/main'
+ * We resolve '@pulsar/renderer' and '@pulsar/preload'
+ * here and not in '@pulsar/main'
  * to observe good practices of modular design.
- * This allows fewer dependencies and better separation of concerns in '@vite-electron-builder/main'.
+ * This allows fewer dependencies and better separation of concerns in '@pulsar/main'.
  * Thus,
  * the main module remains simplistic and efficient
  * as it receives initialization instructions rather than direct module imports.
  */
-initApp(
-  {
-    renderer: (process.env.MODE === 'development' && !!process.env.VITE_DEV_SERVER_URL) ?
-      new URL(process.env.VITE_DEV_SERVER_URL)
+initApp({
+  renderer:
+    process.env.MODE === "development" && !!process.env.VITE_DEV_SERVER_URL
+      ? new URL(process.env.VITE_DEV_SERVER_URL)
       : {
-        path: fileURLToPath(import.meta.resolve('@vite-electron-builder/renderer')),
-      },
+          path: fileURLToPath(import.meta.resolve("@pulsar/renderer")),
+        },
 
-    preload: {
-      path: fileURLToPath(import.meta.resolve('@vite-electron-builder/preload/exposed.mjs')),
-    },
+  preload: {
+    path: fileURLToPath(import.meta.resolve("@pulsar/preload/exposed.mjs")),
   },
-);
+});
