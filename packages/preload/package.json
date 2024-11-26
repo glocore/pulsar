@@ -1,5 +1,5 @@
 {
-  "name": "@vite-electron-builder/preload",
+  "name": "@pulsar/preload",
   "type": "module",
   "scripts": {
     "build": "vite build",
@@ -16,7 +16,7 @@
     }
   },
   "devDependencies": {
-    "@vite-electron-builder/electron-versions": "*",
+    "@pulsar/electron-versions": "*",
     "mlly": "1.7.3",
     "typescript": "^5.6.3",
     "vite": "5.4.11"
