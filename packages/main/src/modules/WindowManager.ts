@@ -1,6 +1,12 @@
 import type {AppModule} from '../AppModule.js';
 import {ModuleContext} from '../ModuleContext.js';
-import { BrowserWindow, Menu, MenuItem, nativeTheme } from "electron";
+import {
+  BrowserWindow,
+  Menu,
+  MenuItem,
+  nativeTheme,
+  systemPreferences,
+} from "electron";
 import type { AppInitConfig } from "../AppInitConfig.js";
 
 class WindowManager implements AppModule {
