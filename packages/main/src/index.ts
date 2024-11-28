@@ -1,4 +1,5 @@
 import type { AppInitConfig } from "./AppInitConfig.js";
+import { registerIpcHandlers } from "./ipc.js";
 import { createModuleRunner } from "./ModuleRunner.js";
 import { autoUpdater } from "./modules/AutoUpdater.js";
 import { allowInternalOrigins } from "./modules/BlockNotAllowdOrigins.js";
@@ -18,9 +19,11 @@ export async function initApp(initConfig: AppInitConfig) {
     .init(
       allowInternalOrigins(
         new Set(
-          initConfig.renderer instanceof URL ? [initConfig.renderer.origin] : []
-        )
-      )
+          initConfig.renderer instanceof URL
+            ? [initConfig.renderer.origin]
+            : [],
+        ),
+      ),
     )
     .init(
       allowExternalUrls(
@@ -37,10 +40,12 @@ export async function initApp(initConfig: AppInitConfig) {
                 "https://www.typescriptlang.org",
                 "https://vuejs.org",
               ]
-            : []
-        )
-      )
+            : [],
+        ),
+      ),
     );
 
   await moduleRunner;
+
+  registerIpcHandlers();
 }
