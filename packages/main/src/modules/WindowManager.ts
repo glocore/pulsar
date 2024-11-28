@@ -1,6 +1,6 @@
 import type {AppModule} from '../AppModule.js';
 import {ModuleContext} from '../ModuleContext.js';
-import { BrowserWindow, Menu, MenuItem } from "electron";
+import { BrowserWindow, Menu, MenuItem, nativeTheme } from "electron";
 import type { AppInitConfig } from "../AppInitConfig.js";
 
 class WindowManager implements AppModule {
@@ -35,6 +35,7 @@ class WindowManager implements AppModule {
         sandbox: false, // Sandbox disabled because the demo of preload script depend on the Node.js api
         preload: this.#preload.path,
       },
+      backgroundColor: nativeTheme.shouldUseDarkColors ? "black" : "white",
     });
 
     if (this.#renderer instanceof URL) {
@@ -55,10 +56,35 @@ class WindowManager implements AppModule {
           },
           accelerator: "f12",
           acceleratorWorksWhenHidden: false,
-        })
+        }),
       );
 
+    const appMenu = menu?.items.find(
+      (i) => i.role === ("appmenu" as "appMenu"),
+    )?.submenu;
+
+    [
+      new MenuItem({ type: "separator" }),
+      new MenuItem({
+        type: "normal",
+        label: "Settings",
+        click() {
+          browserWindow.webContents.toggleDevTools();
+        },
+        accelerator: "CommandOrControl+,",
+        acceleratorWorksWhenHidden: false,
+      }),
+    ].forEach((menuItem: MenuItem) => appMenu?.insert(2, menuItem));
+
     Menu.setApplicationMenu(menu);
+
+    nativeTheme.on("updated", () => {
+      const backgroundColor = nativeTheme.shouldUseDarkColors
+        ? "black"
+        : "white";
+
+      browserWindow.setBackgroundColor(backgroundColor);
+    });
 
     return browserWindow;
   }
