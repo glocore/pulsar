@@ -17,13 +17,13 @@
   },
   "devDependencies": {
     "@npmcli/map-workspaces": "4.0.2",
-    "@playwright/test": "1.49.0",
-    "@types/node": "22.10.1",
+    "@playwright/test": "1.49.1",
+    "@types/node": "22.10.2",
     "electron": "33.2.1",
     "electron-builder": "26.0.0-alpha.6",
     "glob": "11.0.0",
     "playwright": "1.49.0",
-    "prettier": "3.4.1",
+    "prettier": "3.4.2",
     "prettier-plugin-organize-imports": "4.1.0"
   },
   "dependencies": {
