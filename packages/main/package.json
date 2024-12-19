@@ -7,17 +7,17 @@
   },
   "exports": {
     ".": {
-      "default": "./dist/index.js",
-      "types": "./src/index.ts"
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
     }
   },
   "dependencies": {
-    "@pulsar/preload": "*",
-    "@pulsar/renderer": "*",
+    "@pulsar/preload": "workspace:*",
+    "@pulsar/renderer": "workspace:*",
     "electron-updater": "6.3.9"
   },
   "devDependencies": {
-    "@pulsar/electron-versions": "*",
+    "@pulsar/electron-versions": "workspace:*",
     "electron-devtools-installer": "^3.2.0",
     "typescript": "5.7.2",
     "vite": "6.0.3"
