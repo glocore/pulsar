@@ -21,7 +21,7 @@
     "@types/node": "22.13.4",
     "electron": "34.2.0",
     "electron-builder": "26.0.9",
-    "glob": "11.0.0",
+    "glob": "11.0.1",
     "playwright": "1.50.1",
     "prettier": "3.4.2",
     "prettier-plugin-organize-imports": "4.1.0"
