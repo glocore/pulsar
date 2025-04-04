@@ -1,8 +1,7 @@
 {
-  "name": "ide",
-  "productName": "ide",
-  "version": "1.0.0",
-  "description": "My Electron application description",
+  "name": "@ceramic/studio",
+  "productName": "Ceramic Studio",
+  "version": "0.0.1",
   "main": ".vite/build/main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -10,11 +9,6 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx ."
-  },
-  "keywords": [],
-  "author": {
-    "name": "Ashwin M",
-    "email": "24620401+glocore@users.noreply.github.com"
   },
   "license": "MIT",
   "pnpm": {
