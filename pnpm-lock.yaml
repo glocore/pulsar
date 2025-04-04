@@ -8,7 +8,7 @@ importers:
 
   .: {}
 
-  packages/ide:
+  packages/studio:
     dependencies:
       electron-squirrel-startup:
         specifier: ^1.0.1
