@@ -1,11 +1,9 @@
-import { execaSync } from "execa";
 import fs from "node:fs";
 import path from "node:path";
-import { afterEach, beforeEach, expect, test } from "vitest";
+import { afterEach, beforeEach, test } from "vitest";
+import { CliBuilder } from "./invoke-cli";
 
 const testRoot = path.join(__dirname, "temp");
-
-const command = `${path.join(__dirname, "cli.ts")}`;
 
 beforeEach(() => {
   fs.mkdirSync(testRoot, { recursive: true });
@@ -16,27 +14,29 @@ afterEach(() => {
 });
 
 test("prompts for the project name if none supplied", async () => {
-  const proc = execaSync(command, { cwd: testRoot });
-
-  expect(proc.stdout).toContain("Project name:");
+  const [_, logs] = CliBuilder().setCwd(testRoot).invoke();
+  logs.should.contain("Project name:");
 });
 
 test("asks to overwrite non-empty target directory", () => {
-  const targetDir = "test-app";
-  fs.mkdirSync(path.join(testRoot, targetDir), { recursive: true });
-  const proc = execaSync(command, ["test-app"], { cwd: testRoot });
+  const projectName = "test-app";
+  const projectDirectory = path.join(testRoot, projectName);
+  fs.mkdirSync(projectDirectory, { recursive: true });
+  fs.writeFileSync(path.join(projectDirectory, "test.txt"), "test", "utf-8");
 
-  expect(proc.stdout).toContain(
-    `Target directory "${targetDir}" is not empty. Please choose how to proceed:`
+  const [_, logs] = CliBuilder().setCwd(testRoot).invoke([projectName]);
+
+  logs.should.contain(
+    `Target directory "${projectName}" is not empty. Please choose how to proceed:`
   );
 });
 
 test("asks to overwrite non-empty current directory", () => {
-  const targetDir = "test-app";
-  fs.mkdirSync(path.join(testRoot, targetDir), { recursive: true });
-  const proc = execaSync(command, ["."], { cwd: testRoot });
+  fs.writeFileSync(path.join(testRoot, "test.txt"), "test", "utf-8");
 
-  expect(proc.stdout).toContain(
+  const [_, logs] = CliBuilder().setCwd(testRoot).invoke(["."]);
+
+  logs.should.contain(
     `Current directory is not empty. Please choose how to proceed:`
   );
 });

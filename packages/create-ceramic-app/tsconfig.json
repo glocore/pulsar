@@ -2,8 +2,8 @@
   "include": ["src"],
   "compilerOptions": {
     "outDir": "dist",
-    "target": "ES2022",
-    "module": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "strict": true,
     "skipLibCheck": true,
     "declaration": false,

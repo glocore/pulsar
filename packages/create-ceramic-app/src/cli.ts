@@ -1,4 +1,4 @@
-#!/usr/bin/env -S pnpm tsx
+#!/usr/bin/env -S pnpx tsx
 
 import * as prompts from "@clack/prompts";
 import mri from "mri";
@@ -70,6 +70,7 @@ async function init() {
   let projectName = toValidProjectName(path.basename(path.resolve(targetDir)));
 
   const root = path.join(process.cwd(), targetDir);
+
   fs.mkdirSync(root, { recursive: true });
 
   prompts.log.step(`Scaffolding project in ${root}...`);
@@ -91,7 +92,7 @@ async function init() {
   const write = (file: string, content?: string) => {
     const targetPath = path.join(root, renameFiles[file] ?? file);
     if (content) {
-      fs.writeFileSync(targetPath, content);
+      fs.writeFileSync(targetPath, content, "utf-8");
     } else {
       copy(path.join(templateDir, file), targetPath);
     }

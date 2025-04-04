@@ -23,6 +23,9 @@ importers:
       pkgroll:
         specifier: ^2.12.1
         version: 2.12.1(typescript@4.5.5)
+      strip-ansi:
+        specifier: ^7.1.0
+        version: 7.1.0
       tsx:
         specifier: ^4.19.3
         version: 4.19.3
