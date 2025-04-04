@@ -12,19 +12,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: use node.js
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Use node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: pnpm
 
-      - name: install dependencies
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: run tests
+      - name: Run tests
         run: cd packages/create-ceramic-app && pnpm run test
