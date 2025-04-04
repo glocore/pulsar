@@ -1,0 +1,23 @@
+{
+  "name": "@ceramic/create-ceramic-app",
+  "version": "0.0.1",
+  "type": "module",
+  "bin": "./dist/cli.mjs",
+  "main": "./dist/cli.mjs",
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "pkgroll",
+    "test": "vitest"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@clack/prompts": "^0.10.0",
+    "mri": "^1.2.0"
+  },
+  "devDependencies": {
+    "execa": "^9.5.2",
+    "pkgroll": "^2.12.1",
+    "tsx": "^4.19.3",
+    "vitest": "^3.1.1"
+  }
+}
