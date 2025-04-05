@@ -26,6 +26,8 @@ async function init() {
       placeholder: "my-ceramic-app",
       defaultValue: "my-ceramic-app",
       validate(dir) {
+        if (!dir) return;
+        
         if (!isValidProjectName(dir)) {
           return "Invalid project name";
         }
@@ -117,7 +119,9 @@ async function init() {
 
   write("README.md", readme);
 
-  prompts.outro(`Ceramic app created at ${String(targetDir)}`);
+  prompts.outro(
+    `Ceramic app created at ${path.basename(path.resolve(targetDir))}`
+  );
 }
 
 function copy(src: string, dest: string) {
